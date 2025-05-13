@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Lottery Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        input, textarea, button { margin-top: 10px; width: 100%; padding: 10px; font-size: 16px; }
+        #result, #status { margin-top: 20px; font-size: 20px; font-weight: bold; }
+        #status { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>🎨 Art Lottery Assistant</h1>
+
+    <label>Your Preferences (in order):</label>
+    <textarea id="preferences" rows="3" placeholder="e.g., 5, 12, 7, 33, 1"></textarea>
+    <button onclick="savePreferences()">💾 Save Preferences</button>
+    <button onclick="undo()">↩️ Undo Last Change</button>
+    <button onclick="resetPreferences()">🔄 Reset Preferences</button>
+
+    <label>Numbers Already Drawn:</label>
+    <textarea id="drawnNumbers" rows="3" placeholder="e.g., 12, 33, 8"></textarea>
+
+    <button onclick="findNextAvailable()">🎯 Find Next Available Item</button>
+    <button onclick="clearDrawnNumbers()">🧹 Clear Drawn Numbers</button>
+
+    <div id="result"></div>
+    <div id="status"></div>
+
+    <!-- Sound Effects -->
+    <audio id="successSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+    <audio id="errorSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+
+    <script>
+        let undoStack = [];
+
+        function parseInput(input) {
+            return input.split(',')
+                        .map(n => parseInt(n.trim()))
+                        .filter(n => !isNaN(n) && n >= 1 && n <= 45);
+        }
+
+        function playSound(success = true) {
+            const sound = document.getElementById(success ? 'successSound' : 'errorSound');
+            sound.currentTime = 0;
+            sound.play();
+        }
+
+        function showStatus(message, isError = false) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = (isError ? '❌ ' : '✅ ') + message;
+            statusDiv.className = isError ? 'error' : '';
+        }
+
+        function savePreferences() {
+            const preferences = document.getElementById('preferences').value;
+            localStorage.setItem('lotteryPreferences', preferences);
+            playSound(true);
+            showStatus('Preferences saved!');
+        }
+
+        function loadPreferences() {
+            const saved = localStorage.getItem('lotteryPreferences');
+            if (saved) {
+                document.getElementById('preferences').value = saved;
+                showStatus('Preferences loaded from storage.');
+            }
+        }
+
+        function saveUndoState() {
+            const current = document.getElementById('preferences').value;
+            undoStack.push(current);
+            if (undoStack.length > 10) undoStack.shift();
+        }
+
+        function findNextAvailable() {
+            const preferencesInput = document.getElementById('preferences');
+            const currentPrefs = preferencesInput.value;
+
+            saveUndoState();
+
+            let preferences = parseInput(currentPrefs);
+            const drawn = new Set(parseInput(document.getElementById('drawnNumbers').value));
+
+            preferences = preferences.filter(item => !drawn.has(item));
+
+            preferencesInput.value = preferences.join(', ');
+
+            const nextItem = preferences[0];
+
+            const resultDiv = document.getElementById('result');
+            if (nextItem !== undefined) {
+                resultDiv.textContent = `🎉 Your next preferred available item is: ${nextItem}`;
+                playSound(true);
+                showStatus('Next item found!');
+            } else {
+                resultDiv.textContent = `😢 All your preferred items have been taken.`;
+                playSound(false);
+                showStatus('No available items left.', true);
+            }
+        }
+
+        function clearDrawnNumbers() {
+            document.getElementById('drawnNumbers').value = '';
+            document.getElementById('result').textContent = '';
+            playSound(true);
+            showStatus('Drawn numbers cleared.');
+        }
+
+        function undo() {
+            if (undoStack.length === 0) {
+                playSound(false);
+                showStatus('Nothing to undo!', true);
+                return;
+            }
+            const lastState = undoStack.pop();
+            document.getElementById('preferences').value = lastState;
+            document.getElementById('result').textContent = '↩️ Preferences restored to previous state.';
+            playSound(true);
+            showStatus('Undo successful.');
+        }
+
+        function resetPreferences() {
+            if (confirm('Are you sure you want to reset your preferences? This will clear the saved preferences as well.')) {
+                document.getElementById('preferences').value = '';
+                localStorage.removeItem('lotteryPreferences');
+                undoStack = [];
+                document.getElementById('result').textContent = '🔄 Preferences have been reset.';
+                playSound(true);
+                showStatus('Preferences reset.');
+            }
+        }
+
+        // Load saved preferences on page load
+        window.onload = loadPreferences;
+    </script>
+</body>
+</html>
