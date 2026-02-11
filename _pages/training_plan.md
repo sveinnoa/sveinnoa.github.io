@@ -6,7 +6,7 @@ layout: default
 # 🏋️ Svenni’s Weekly VO₂ Max Training Plan
 
 | Day | Training Type | Duration | Intensity | Focus |
-|------|----------------|-----------|------------|--------|
+| --- | -------------- | -------- | ---------- | ------ |
 | **Monday** | 💪 **Gym – Upper Body & Core** | 40–50 min | Moderate | Build stability & strength without fatiguing legs. Bench press, rows, planks, mobility. |
 | **Tuesday** | ⚽ **Soccer (21:00)** | ~60 min | High | Natural interval session — main VO₂ max booster. Hydrate well & eat light 2h before. |
 | **Wednesday** | 🌿 **Active Recovery** | 30–45 min | Low | Gentle walk, cycle, or stretch. Promotes recovery. |
@@ -18,6 +18,7 @@ layout: default
 ---
 
 ### 🎯 Target Outcomes
+
 - **VO₂ max:** 42 → 45–46 ml/kg/min  
 - **Fitness (biological) age:** ~40–42 years  
 - Improved stamina for soccer and runs
