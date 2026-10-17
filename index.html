@@ -1,5 +1,308 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Sveinn Ólafur Arnórsson </title> <meta name="author" content="Sveinn Ólafur Arnórsson"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://sveinnoa.github.io/"> <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
-    initTheme();
-  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item active"> <a class="nav-link" href="/">about <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">cv </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li> <li class="nav-item "> <a class="nav-link" href="/people/">people </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/publications/">publications</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/projects/">projects</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title"> <span class="font-weight-bold">Sveinn</span> Ólafur Arnórsson </h1> <p class="desc"><a href="#">Affiliations</a>. Address. Contacts. Motto. Etc.</p> </header> <article> <div class="profile float-right"> <figure> <picture> <img src="/assets/img/prof_pic.jpg?974957d202f671e4fa6700c04e68deae" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="prof_pic.jpg" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> <div class="more-info"> <p>555 your office number</p> <p>123 your address street</p> <p>Your City, State 12345</p> </div> </div> <div class="clearfix"> <p>Write your biography here. Tell the world about yourself. Link to your favorite <a href="http://reddit.com" rel="external nofollow noopener" target="_blank">subreddit</a>. You can put a picture in, too. The code is already in, just name your picture <code class="language-plaintext highlighter-rouge">prof_pic.jpg</code> and put it in the <code class="language-plaintext highlighter-rouge">img/</code> folder.</p> <p>Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing <code class="language-plaintext highlighter-rouge">profile</code> property of the YAML header of your <code class="language-plaintext highlighter-rouge">_pages/about.md</code>. Edit <code class="language-plaintext highlighter-rouge">_bibliography/papers.bib</code> and Jekyll will render your <a href="/al-folio/publications/">publications page</a> automatically.</p> <p>Link to your social media connections, too. This theme is set up to use <a href="https://fontawesome.com/" rel="external nofollow noopener" target="_blank">Font Awesome icons</a> and <a href="https://jpswalsh.github.io/academicons/" rel="external nofollow noopener" target="_blank">Academicons</a>, like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.</p> </div> <h2> <a href="/news/" style="color: inherit">news</a> </h2> <div class="news"> <div class="table-responsive"> <table class="table table-sm table-borderless"> <tr> <th scope="row" style="width: 20%">Jan 15, 2016</th> <td> A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20"> </td> </tr> <tr> <th scope="row" style="width: 20%">Nov 07, 2015</th> <td> <a class="news-title" href="/news/announcement_2/">A long announcement with details</a> </td> </tr> <tr> <th scope="row" style="width: 20%">Oct 22, 2015</th> <td> A simple inline announcement. </td> </tr> </table> </div> </div> <h2> <a href="/blog/" style="color: inherit">latest posts</a> </h2> <div class="news"> <div class="table-responsive" style="max-height: 60vw"> <table class="table table-sm table-borderless"> <tr> <th scope="row" style="width: 20%">Dec 04, 2024</th> <td> <a class="news-title" href="/blog/2024/photo-gallery/">a post with image galleries</a> </td> </tr> <tr> <th scope="row" style="width: 20%">May 14, 2024</th> <td> <a class="news-title" href="https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/" target="_blank" rel="external nofollow noopener">Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra</a> <svg width="2rem" height="2rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"> <path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </td> </tr> <tr> <th scope="row" style="width: 20%">May 01, 2024</th> <td> <a class="news-title" href="/blog/2024/tabs/">a post with tabs</a> </td> </tr> </table> </div> </div> <h2> <a href="/publications/" style="color: inherit">selected publications</a> </h2> <div class="publications"> <ol class="bibliography"><li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100"> <a href="https://journals.aps.org/" rel="external nofollow noopener" target="_blank">PhysRev</a> </abbr> </div> <div id="PhysRev.47.777" class="col-sm-8"> <div class="title">Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?</div> <div class="author"> <em>A. Einstein<sup>*†</sup></em>, <a href="https://en.wikipedia.org/wiki/Boris_Podolsky" rel="external nofollow noopener" target="_blank">B. Podolsky<sup>*</sup></a>, and <a href="https://en.wikipedia.org/wiki/Nathan_Rosen" rel="external nofollow noopener" target="_blank">N. Rosen<sup>*</sup></a> <i class="fa-solid fa-circle-info ml-1" data-toggle="popover" data-placement="top" data-html="true" data-content="* Example use of superscripts&lt;br&gt;† Albert Einstein"> </i> </div> <div class="periodical"> <em>Phys. Rev.</em>, New Jersey. <em>More Information</em> can be <a href="https://github.com/alshedivat/al-folio/" rel="external nofollow noopener" target="_blank">found here</a> , May 1935 </div> <div class="periodical"> </div> <div class="links"> <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a> <a href="https://doi.org/10.1103/PhysRev.47.777" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a> <a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a> <a href="/assets/pdf/example_pdf.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a> <a href="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">Video</a> </div> <div class="badges"> <span class="altmetric-embed" data-badge-type="2" data-badge-popover="right" data-altmetric-id="248277"></span> <span class="__dimensions_badge_embed__" data-doi="10.1103/PhysRev.47.777" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span> <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=qc6CJjYAAAAJ&amp;citation_for_view=qc6CJjYAAAAJ:qyhmnyLat1gC" aria-label="Google Scholar link" role="button" rel="external nofollow noopener" target="_blank"> <img src="https://img.shields.io/badge/scholar-N/A-4285F4?logo=googlescholar&amp;labelColor=beige" alt="N/A Google Scholar citations"> </a> <a href="https://inspirehep.net/literature/3255" aria-label="Inspirehep link" role="button" rel="external nofollow noopener" target="_blank"> <img src="https://img.shields.io/badge/inspire-8.4K-001628?logo=inspire&amp;logoColor=001628&amp;labelColor=beige" alt="8.4K InspireHEP citations"> </a> </div> <div class="abstract hidden"> <p>In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.</p> </div> </div> </div> </li></ol> </div> <div class="social"> <div class="contact-icons"> <a href="mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D" title="email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspire HEP" rel="external nofollow noopener" target="_blank"><i class="ai ai-inspire"></i></a> <a href="/feed.xml" title="RSS Feed"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Google Scholar" rel="external nofollow noopener" target="_blank"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social" rel="external nofollow noopener" target="_blank"> <img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social"> </a> </div> <div class="contact-note">You can even add a little note about which of these is the best way to reach you. </div> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Sveinn Ólafur Arnórsson. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?a0db7e5d5c70cc3252b3138b0c91dcaf" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
-    addBackToTop();
-  </script> <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/assets/js/search-data.js"></script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sveinn Ólafur Arnórsson, software engineer</title>
+<meta name="description" content="Sveinn Ólafur Arnórsson is a senior software engineer at Arion banki in Reykjavík with over thirty years of building systems for air traffic control, maritime surveillance, payments and banking.">
+<meta name="author" content="Sveinn Ólafur Arnórsson">
+<link rel="canonical" href="https://sveinnarnorsson.com/">
+<meta property="og:title" content="Sveinn Ólafur Arnórsson, software engineer">
+<meta property="og:description" content="Thirty years of software for air traffic, maritime surveillance, payments and banking.">
+<meta property="og:url" content="https://sveinnarnorsson.com/">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232F6F73'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' text-anchor='middle' fill='%23EEF1EF'%3ESA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Sveinn Ólafur Arnórsson","jobTitle":"Senior Software Engineer",
+"worksFor":{"@type":"Organization","name":"Arion banki"},
+"alumniOf":[{"@type":"CollegeOrUniversity","name":"Stanford University"},{"@type":"CollegeOrUniversity","name":"University of Iceland"}],
+"address":{"@type":"PostalAddress","addressLocality":"Reykjavík","addressCountry":"IS"},
+"url":"https://sveinnarnorsson.com/","sameAs":["https://www.linkedin.com/in/sveinnoa","https://github.com/sveinnoa"]}
+</script>
+<style>
+:root{
+  --frost:#EEF1EF; --surface:#FFFFFF; --basalt:#1E2427; --slate:#58666B; --line:#CBD3D2;
+  --fjord:#2F6F73; --lichen:#B8931E;
+  --d-air:#7C93A8; --d-sea:#2F6F73; --d-pay:#B8931E; --d-mob:#8A7AA6; --d-bank:#1E3A4C;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --frost:#151A1C; --surface:#1C2326; --basalt:#E4EAE8; --slate:#9AA8AB; --line:#2E383B;
+    --fjord:#6FB3B5; --lichen:#D9B547;
+    --d-air:#8FA7BD; --d-sea:#4E9A9C; --d-pay:#D9B547; --d-mob:#A595C2; --d-bank:#CFE0E6;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Schibsted Grotesk",system-ui,sans-serif;background:var(--frost);color:var(--basalt);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--fjord);text-underline-offset:.2em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--lichen);outline-offset:3px;border-radius:2px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.5rem}
+
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+header.top .mark{font-weight:800;text-decoration:none;color:var(--basalt)}
+header.top nav{display:flex;gap:1.5rem}
+header.top nav a{color:var(--slate);text-decoration:none;font-size:.95rem}
+header.top nav a:hover{color:var(--basalt)}
+
+.hero{padding:5rem 0 2rem}
+.hero h1{font-size:clamp(2.6rem,7.5vw,5.75rem);font-weight:800;line-height:.98;letter-spacing:-.035em;max-width:14ch}
+.hero .lede{margin-top:2rem;max-width:40rem;font-size:clamp(1.15rem,2vw,1.35rem);line-height:1.5;color:var(--slate)}
+.hero .lede strong{color:var(--basalt);font-weight:500}
+
+/* Career span: the one memorable element */
+.span{margin:4rem 0 0}
+.span-bar{display:flex;height:2.75rem;border-radius:6px;overflow:hidden;gap:2px;background:var(--frost)}
+.span-bar div{flex-grow:var(--y);flex-basis:0;transform-origin:left;animation:grow .6s cubic-bezier(.4,0,.2,1) both}
+.span-bar div:nth-child(1){animation-delay:.2s}.span-bar div:nth-child(2){animation-delay:.35s}
+.span-bar div:nth-child(3){animation-delay:.5s}.span-bar div:nth-child(4){animation-delay:.65s}
+.span-bar div:nth-child(5){animation-delay:.8s}.span-bar div:nth-child(6){animation-delay:.95s}
+.span-bar div:nth-child(7){animation-delay:1.1s}.span-bar div:nth-child(8){animation-delay:1.25s}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.air{background:var(--d-air)}.sea{background:var(--d-sea)}.pay{background:var(--d-pay)}.mob{background:var(--d-mob)}.bank{background:var(--d-bank)}
+.span-scale{display:flex;justify-content:space-between;color:var(--slate);font-size:.9rem;margin-top:.5rem}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin-top:1.25rem;list-style:none;font-size:.95rem}
+.legend li{display:flex;align-items:center;gap:.5rem}
+.legend i{width:.85rem;height:.85rem;border-radius:3px;display:inline-block}
+.legend span{color:var(--slate)}
+
+section.block{padding:5rem 0 0}
+.block-head{display:grid;grid-template-columns:14rem 1fr;gap:2rem;align-items:baseline}
+.block-head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.block-body{grid-column:2}
+.prose p{max-width:40rem}
+.prose p+p{margin-top:1rem}
+
+/* Now */
+.now{display:grid;grid-template-columns:1fr 1fr;gap:2.25rem 3rem}
+.now h3{font-size:1.125rem;font-weight:700;margin-bottom:.35rem;letter-spacing:-.01em}
+.now p{color:var(--slate);max-width:32rem}
+.now .wide{grid-column:1/-1;background:var(--surface);border-left:4px solid var(--d-bank);padding:1.5rem 1.75rem;border-radius:0 6px 6px 0}
+.now .wide p{color:var(--basalt)}
+
+/* Timeline */
+.role{display:grid;grid-template-columns:8.5rem 1fr;gap:1.5rem;padding:1.5rem 0;border-top:1px solid var(--line)}
+.role:first-child{border-top:0;padding-top:0}
+.role .when{color:var(--slate);font-size:.95rem;font-variant-numeric:tabular-nums;display:flex;gap:.6rem;align-items:baseline}
+.role .when i{width:.6rem;height:.6rem;border-radius:2px;flex:none;transform:translateY(-1px)}
+.role h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+.role .org{color:var(--slate);margin-bottom:.5rem}
+.role p{max-width:40rem}
+
+/* Education */
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.edu h3{font-size:1.05rem;font-weight:700;line-height:1.35}
+.edu .school{color:var(--slate);margin:.25rem 0 .5rem}
+.edu p{font-size:.95rem}
+.courses{margin-top:2.5rem;max-width:40rem}
+.courses h3{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.courses ul{list-style:none;color:var(--slate)}
+.courses li{line-height:1.8}
+
+/* Skills */
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.75rem 2rem}
+.tools h3{font-size:.95rem;font-weight:500;color:var(--slate);margin-bottom:.5rem}
+.tools ul{list-style:none}
+.tools li{font-weight:500;line-height:1.75}
+
+.side{display:grid;grid-template-columns:1fr;gap:2rem;max-width:40rem}
+.side article{border:1px solid var(--line);border-radius:10px;padding:1.5rem;background:var(--surface)}
+.side h3{font-size:1.125rem;font-weight:700;margin-bottom:.4rem}
+.side p{color:var(--slate);font-size:.98rem}
+
+.contact{padding:6rem 0 4rem}
+.contact .big{font-size:clamp(1.9rem,5vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;max-width:18ch}
+.contact .links{display:flex;flex-wrap:wrap;gap:1rem 2.25rem;margin-top:2rem;font-size:1.125rem}
+.contact .links a{font-weight:500}
+.lang{margin-top:1.25rem;color:var(--slate)}
+footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;color:var(--slate);font-size:.9rem}
+
+@media (max-width:820px){
+  .block-head{grid-template-columns:1fr;gap:1rem}
+  .block-body{grid-column:1}
+  .now,.side,.edu{grid-template-columns:1fr}
+  .role{grid-template-columns:1fr;gap:.35rem}
+  header.top nav{display:none}
+  .hero{padding-top:3rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.span-bar div{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <a class="mark" href="#top">Sveinn Arnórsson</a>
+  <nav aria-label="Sections">
+    <a href="#now">Now</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <h1>Sveinn Ólafur Arnórsson</h1>
+  <p class="lede"><strong>Software engineer in Reykjavík, currently at Arion banki.</strong> For over thirty years I've built systems that have to keep working: air traffic simulators, coast guard vessel surveillance, payment gateways, and now the services behind a bank's trading and pension products.</p>
+
+  <figure class="span" aria-labelledby="span-cap">
+    <figcaption id="span-cap" class="sr-only" style="position:absolute;left:-9999px">Career from 1992 to today, by domain</figcaption>
+    <div class="span-bar" role="img" aria-label="1992 to 1998 aviation, 1998 to 2007 maritime, 2007 to 2010 payments, 2010 to 2012 maritime, 2013 to 2015 mobile, 2015 to 2017 payments, 2018 to today banking">
+      <div class="air"  style="--y:6"  title="Aviation, 1992–1998"></div>
+      <div class="sea"  style="--y:9"  title="Maritime, 1998–2007"></div>
+      <div class="pay"  style="--y:3"  title="Payments, 2007–2010"></div>
+      <div class="sea"  style="--y:2"  title="Maritime, 2010–2012"></div>
+      <div class="mob"  style="--y:2"  title="Mobile, 2013–2015"></div>
+      <div class="pay"  style="--y:2"  title="Payments, 2015–2017"></div>
+      <div class="bank" style="--y:8"  title="Banking, 2018–today"></div>
+    </div>
+    <div class="span-scale"><span>1992</span><span>Today</span></div>
+    <ul class="legend">
+      <li><i class="air"></i>Aviation <span>air traffic and radar</span></li>
+      <li><i class="sea"></i>Maritime <span>vessel surveillance</span></li>
+      <li><i class="pay"></i>Payments <span>cards and gateways</span></li>
+      <li><i class="mob"></i>Mobile <span>iOS and Android</span></li>
+      <li><i class="bank"></i>Banking <span>trading and pensions</span></li>
+    </ul>
+  </figure>
+</section>
+
+<section class="block" id="about">
+  <div class="block-head">
+    <h2>About</h2>
+    <div class="block-body prose">
+      <p>I trained as an engineer before I wrote software for a living: mechanical engineering at the University of Iceland, then an MSc in aeronautics and astronautics at Stanford, focused on guidance and control. That background in feedback systems, Kalman filtering and real-time behaviour still shapes how I approach software. I want to know how a system behaves when inputs are noisy, late or wrong.</p>
+      <p>Since then I've worked in Reykjavík, Copenhagen and Miami, on everything from radar simulation to card-less e-commerce built with the Icelandic banks' data centre. I've also studied financial engineering, which comes in handy now that I build trading and portfolio services.</p>
+      <p>Away from the keyboard I run and play football.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="now">
+  <div class="block-head">
+    <h2>Now</h2>
+    <div class="block-body now">
+      <div class="wide">
+        <h3>Arion banki app services</h3>
+        <p>I build the core services behind the Arion banking app: securities trading, portfolio management and pension self-service, in C# on modern .NET with SQL Server, Redis and RabbitMQ.</p>
+      </div>
+      <div>
+        <h3>Exchange integration testing</h3>
+        <p>A testing strategy for trading connectivity to Nasdaq Iceland. It uses lightweight ASP.NET Core stubs, xUnit and Testcontainers, so the integration can be verified long before it touches a live feed.</p>
+      </div>
+      <div>
+        <h3>Pension systems architecture</h3>
+        <p>API-first, service-based design for pension administration in Iceland. Separate services handle members, employers, contributions, funds and payments, with integrations to the tax authority, the financial supervisor and Registers Iceland.</p>
+      </div>
+      <div>
+        <h3>Delivery and platform</h3>
+        <p>Keeping Azure DevOps and Octopus Deploy pipelines healthy and Artifactory feeds tidy. I also work on charting a path from .NET Framework to modern .NET.</p>
+      </div>
+      <div>
+        <h3>AI-assisted engineering</h3>
+        <p>Running coding models locally on Apple Silicon and working with tools like Claude Code day to day. It continues an interest in machine learning that goes back to Stanford's first online ML course in 2011.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="block-head">
+    <h2>Experience</h2>
+    <div class="block-body">
+      <div class="role"><div class="when"><i class="bank"></i>2018–today</div><div>
+        <h3>Senior Software Engineer</h3><div class="org">Arion banki, Reykjavík</div>
+        <p>Services for the Arion banking app, including core services for securities trading, portfolio management and pension self-service.</p></div></div>
+      <div class="role"><div class="when"><i class="pay"></i>2015–2017</div><div>
+        <h3>Senior Software Engineer</h3><div class="org">Handpoint, Reykjavík</div>
+        <p>Design and development of a payment platform for mobile card terminals and integration of payment protocols in the gateway. I was lead developer on the gateway team.</p></div></div>
+      <div class="role"><div class="when"><i class="mob"></i>2013–2015</div><div>
+        <h3>Software Engineer</h3><div class="org">Cowbell, Reykjavík</div>
+        <p>iOS and Android apps backed by Amazon Web Services and Parse, mostly sports apps with social betting and challenges.</p></div></div>
+      <div class="role"><div class="when"><i class="sea"></i>2010–2012</div><div>
+        <h3>Software Engineer</h3><div class="org">Trackwell, Reykjavík</div>
+        <p>Electronic reporting systems and vessel monitoring for fisheries. Catch reports were processed automatically and forwarded to international monitoring agencies.</p></div></div>
+      <div class="role"><div class="when"><i class="pay"></i>2007–2010</div><div>
+        <h3>Software Engineer</h3><div class="org">Cowbell, Miami</div>
+        <p>Payment and billing services. Card-less e-commerce through central registration of credit and debit cards, built with the Icelandic Banks' Data Centre.</p></div></div>
+      <div class="role"><div class="when"><i class="sea"></i>1998–2007</div><div>
+        <h3>Software Engineer and Project Manager</h3><div class="org">Trackwell, Reykjavík</div>
+        <p>Automatic security surveillance of all Icelandic vessels above a set size, and coast guard monitoring of foreign fishing vessels inside the Icelandic Fisheries Zone. This included tracking vessels in international waters with automatic catch reporting.</p></div></div>
+      <div class="role"><div class="when"><i class="air"></i>1996–1998</div><div>
+        <h3>Software Engineer</h3><div class="org">Integra Consult, Copenhagen</div>
+        <p>Remote health monitoring for air traffic control equipment. I interfaced legacy hardware and put a heartbeat on every critical point.</p></div></div>
+      <div class="role"><div class="when"><i class="air"></i>1992–1996</div><div>
+        <h3>Software Engineer</h3><div class="org">Systems Engineering Lab, Reykjavík</div>
+        <p>Air traffic and radar simulator for route optimisation and testing of ATC equipment. It produced realistic radar readings with noise and errors for each radar type, and ran real-time display, control and data streaming.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="education">
+  <div class="block-head">
+    <h2>Education</h2>
+    <div class="block-body">
+      <div class="edu">
+        <div><h3>MSc Aeronautics and Astronautics</h3><div class="school">Stanford University, 1994</div><p>Guidance and control, feedback control, digital control systems.</p></div>
+        <div><h3>BSc Mechanical Engineering</h3><div class="school">University of Iceland, 1992</div><p>Control systems, Kalman filtering.</p></div>
+        <div><h3>Graduate courses in Financial Engineering</h3><div class="school">Florida International University, 2007</div><p>Securities analysis, fixed income, portfolio management, financial futures.</p></div>
+      </div>
+      <div class="courses">
+        <h3>Machine learning and AI courses</h3>
+        <ul>
+          <li>Structuring Machine Learning Projects, deeplearning.ai, 2018</li>
+          <li>Improving Deep Neural Networks, deeplearning.ai, 2017</li>
+          <li>Neural Networks and Deep Learning, deeplearning.ai, 2017</li>
+          <li>Machine Learning, Stanford, 2011</li>
+          <li>AI for Robotics, Stanford, 2011</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="skills">
+  <div class="block-head">
+    <h2>Skills</h2>
+    <div class="block-body tools">
+      <div><h3>Current stack</h3><ul><li>C# and .NET</li><li>SQL Server</li><li>Redis</li><li>RabbitMQ</li><li>Docker</li></ul></div>
+      <div><h3>Delivery</h3><ul><li>Git</li><li>Azure DevOps</li><li>Octopus Deploy</li><li>JFrog Artifactory</li></ul></div>
+      <div><h3>Also worked in</h3><ul><li>C++ and Objective-C</li><li>Java and UNIX shell</li><li>Oracle databases</li><li>MATLAB</li></ul></div>
+      <div><h3>Integration</h3><ul><li>REST and WCF</li><li>Apache CXF and Axis</li><li>Apache HTTP and Tomcat</li><li>xUnit and Testcontainers</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="projects">
+  <div class="block-head">
+    <h2>On the side</h2>
+    <div class="block-body side">
+      <article><h3>Local AI coding setup</h3><p>A fully local coding assistant on an M2 Mac. Qwen3-Coder is served through MLX-LM and bridged with LiteLLM so it works with Claude Code.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p class="big">Want to talk about software, systems or finance?</p>
+  <div class="links">
+    <a href="mailto:sveinnoa@gmail.com">sveinnoa@gmail.com</a>
+    <a href="https://www.linkedin.com/in/sveinnoa">LinkedIn</a>
+    <a href="https://github.com/sveinnoa">GitHub</a>
+  </div>
+  <p class="lang">I work in Icelandic and English.</p>
+</section>
+
+</main>
+<footer>© <span id="y">2026</span> Sveinn Ólafur Arnórsson. Reykjavík, Iceland.</footer>
+</div>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
