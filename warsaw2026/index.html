@@ -440,11 +440,11 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
     bar.innerHTML='<p><span class="dot"></span>Saved on this device only.</p><button type="button" class="ghost" data-act="start">Sign in to sync</button>';
   }
   function showEmailForm(){
-    bar.innerHTML='<form data-act="email"><input type="email" name="email" required placeholder="Your email" autocomplete="email"><button>Send code</button></form><p class="note">We email you a sign-in code. Ratings and photos then sync to every device you sign in on.</p>';
+    bar.innerHTML='<form data-act="email"><input type="email" name="email" required placeholder="Your email" autocomplete="email"><button>Send code</button></form><p class="note">We email you a sign-in link. Ratings and photos then sync to every device you sign in on.</p>';
     bar.querySelector('input').focus();
   }
   function showCodeForm(email){
-    bar.innerHTML='<p class="note">Sent to <b></b>. Enter the code from the email, or tap its link.</p><form data-act="code"><input name="code" required inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" placeholder="Code"><button>Sign in</button></form><button type="button" class="ghost" data-act="start">Use another email</button>';
+    bar.innerHTML='<p class="note">Sent to <b></b>. Open the link in that email on this phone, in the same browser. If the email shows a code, you can enter it here instead.</p><form data-act="code"><input name="code" required inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" placeholder="Code (optional)"><button>Sign in</button></form><button type="button" class="ghost" data-act="start">Use another email</button>';
     bar.querySelector('b').textContent=email;
     bar.dataset.email=email;
     bar.querySelector('input').focus();

@@ -10,7 +10,9 @@ create table if not exists public.allowed_emails (
 alter table public.allowed_emails enable row level security;
 -- Edit these, then re-run (or insert more later in the Table Editor).
 insert into public.allowed_emails (email) values
-  ('sveinnoa@gmail.com')
+  ('sveinn.arnorsson@arionbanki.is'),
+  ('haukur.sveinsson@arionbanki.is'),
+  ('jonas.oddsson@arionbanki.is')
 on conflict do nothing;
 
 create or replace function public.is_allowed()
