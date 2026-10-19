@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Two days of .NET in Warsaw · Sveinn Arnórsson</title>
+<title>Three days of .NET in Warsaw · Sveinn Arnórsson</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232F6F73'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' text-anchor='middle' fill='%23EEF1EF'%3ESA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@ a:hover{text-decoration-thickness:2px}
 .wrap{max-width:68rem;margin:0 auto;padding:0 1.5rem}
 
 header.top{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
-header.top .mark{font-weight:800;text-decoration:none;color:var(--basalt)}
+header.top .mark{white-space:nowrap;font-weight:800;text-decoration:none;color:var(--basalt)}
 header.top nav{display:flex;gap:1.5rem}
 header.top nav a{color:var(--slate);text-decoration:none;font-size:.95rem}
 header.top nav a:hover{color:var(--basalt)}
@@ -44,7 +44,7 @@ header.top nav a:hover{color:var(--basalt)}
 .legend{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin-top:1.5rem;list-style:none;font-size:.95rem}
 .legend li{display:flex;align-items:center;gap:.5rem}
 .legend i{width:.85rem;height:.85rem;border-radius:3px;display:inline-block}
-.a{background:var(--room-a)}.b{background:var(--room-b)}.c{background:var(--room-c)}
+.w{background:var(--slate)}.a{background:var(--room-a)}.b{background:var(--room-b)}.c{background:var(--room-c)}
 
 section.block{padding:4.5rem 0 0}
 .block-head{display:grid;grid-template-columns:14rem 1fr;gap:2rem;align-items:baseline}
@@ -56,6 +56,7 @@ section.block{padding:4.5rem 0 0}
 .slot:first-child{border-top:0;padding-top:0}
 .slot .when{color:var(--slate);font-size:.95rem;font-variant-numeric:tabular-nums}
 .slot h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.slot h3 a{color:inherit}
 .who{color:var(--slate);display:flex;align-items:baseline;gap:.6rem;margin-top:.2rem}
 .who i{width:.6rem;height:.6rem;border-radius:2px;flex:none;transform:translateY(-1px)}
 .alt{margin-top:.9rem;padding:.75rem 1rem;background:var(--surface);border-radius:6px;font-size:.95rem}
@@ -100,6 +101,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
   .slot{grid-template-columns:1fr;gap:.35rem}
   .hero{padding-top:3rem}
 }
+@media (max-width:480px){header.top nav{gap:1.1rem}header.top nav .long{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -109,21 +111,34 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
 <header class="top">
   <a class="mark" href="/">Sveinn Arnórsson</a>
   <nav aria-label="Days">
-    <a href="#tue">Tuesday</a>
-    <a href="#wed">Wednesday</a>
+    <a href="#mon">Mon<span class="long">day</span></a>
+    <a href="#tue">Tue<span class="long">sday</span></a>
+    <a href="#wed">Wed<span class="long">nesday</span></a>
   </nav>
 </header>
 
 <main>
 
 <section class="hero">
-  <h1>Two days of .NET in Warsaw</h1>
-  <p class="lede">The sessions I plan to attend on 20–21 October 2026. All times are Warsaw time (CEST). Each session gets a rating from 0 to 3 commits, from <code>Segfault (core dumped)</code> to <code>Ship it to prod on a Friday</code>.</p>
+  <h1>Three days of .NET in Warsaw</h1>
+  <p class="lede">The sessions I plan to attend on 19–21 October 2026, starting with a full-day workshop. All times are Warsaw time (CEST). Each session gets a rating from 0 to 3 commits, from <code>Segfault (core dumped)</code> to <code>Ship it to prod on a Friday</code>.</p>
   <ul class="legend">
     <li><i class="a"></i>Room A</li>
     <li><i class="b"></i>Room B</li>
     <li><i class="c"></i>Room C</li>
   </ul>
+</section>
+
+<section class="block" id="mon">
+  <div class="block-head">
+    <h2>Monday <span>19 October</span></h2>
+    <div class="block-body">
+      <div class="slot"><div class="when">09:00–17:00</div><div>
+        <h3><a href="https://developerdays.eu/warsaw/hands-on-building-genai-enabled-net-applications-using-the-microsoft-agent-framework/">Hands-on building GenAI enabled .NET applications using the Microsoft Agent Framework</a></h3>
+        <div class="who"><i class="w"></i>Johnny Hooyberghs · Full-day workshop · Lunch 13:00–13:45</div>
+      </div></div>
+    </div>
+  </div>
 </section>
 
 <section class="block" id="tue">
