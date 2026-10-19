@@ -93,6 +93,22 @@ dialog.viewer .bar{display:flex;justify-content:space-between;margin-top:.75rem}
 dialog.viewer button{font:inherit;font-size:.95rem;border:0;border-radius:6px;padding:.55rem 1rem;cursor:pointer;background:var(--surface);color:var(--basalt)}
 dialog.viewer .del{color:#B5483B}
 
+/* Cloud sync bar */
+.sync{margin-top:1.75rem;padding:.9rem 1.1rem;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:.95rem;display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;max-width:40rem}
+.sync p{color:var(--slate);flex:1 1 14rem}
+.sync p b{color:var(--basalt);font-weight:500}
+.sync .note{flex-basis:100%}
+.sync .err{flex-basis:100%;color:#B5483B}
+.sync form{display:flex;gap:.5rem;flex:1 1 100%}
+.sync input{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.5rem .7rem;border:1px solid var(--line);border-radius:6px;background:var(--frost);color:var(--basalt)}
+.sync button{font:inherit;font-weight:500;padding:.5rem .9rem;border-radius:6px;border:1px solid var(--fjord);background:var(--fjord);color:var(--surface);cursor:pointer;white-space:nowrap}
+.sync button.ghost{background:none;color:var(--fjord)}
+.sync button:disabled{opacity:.5}
+.sync .dot{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--slate);margin-right:.5rem;transform:translateY(-1px)}
+.sync[data-state="ok"] .dot{background:var(--fjord)}
+.sync[data-state="busy"] .dot{background:var(--lichen);animation:pulse 1s ease-in-out infinite}
+.sync[data-state="err"] .dot{background:#B5483B}
+
 footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;color:var(--slate);font-size:.9rem}
 
 @media (max-width:820px){
@@ -221,10 +237,25 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
 </div>
 <script>
 (function(){
-  var KEY='agenda-ratings-2026';
+  // Supabase project (Settings -> API). The anon key is public by design;
+  // row level security in supabase/setup.sql keeps each person's data private.
+  // Leave empty to keep everything on this device only.
+  var SUPABASE_URL='https://vqeypqlejhcawbfdqeio.supabase.co';
+  var SUPABASE_KEY='sb_publishable_l9-W0oJiO2UpfozvmXWr-A_Ef1xCrnd';
+
+  var KEY='agenda-ratings-2026',OWNER='warsaw2026-owner';
   var LABELS=['Segfault (core dumped)','Works on my machine','LGTM','Ship it to prod on a Friday'];
+  var OFFLINE='Offline. Saved on this device and will sync later.';
+  var ui={};       // session key -> {rate, box}
+  var thumbs={};   // local photo id -> {img, url}
+  var sb=null,user=null,allowed=false,syncing=false,lastSync=0,uploading={};
+
+  // Ratings: {key: {r: 0-3, t: ms}} in localStorage.
   var store={};
   try{store=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+  Object.keys(store).forEach(function(k){if(typeof store[k]==='number')store[k]={r:store[k],t:0}});
+  function saveStore(){try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}}
+  function val(key){return store[key]?store[key].r:null}
 
   function render(el,r){
     el.dataset.r=r==null?'':r;
@@ -235,6 +266,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
     });
     el.querySelector('.verdict').textContent=r==null?'Not rated yet':LABELS[r];
   }
+  function renderKey(key){if(ui[key])render(ui[key].rate,val(key))}
 
   function widget(key){
     var el=document.createElement('div');
@@ -247,11 +279,12 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
       b.setAttribute('aria-label',k+' of 3');
       b.title='Rate '+k+' of 3 (click again to lower)';
       b.addEventListener('click',(function(k){return function(){
-        var cur=store[key];
+        var cur=val(key);
         var r=cur===k?k-1:k;
-        store[key]=r;
-        try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}
+        store[key]={r:r,t:Date.now()};
+        saveStore();
         render(el,r);
+        pushRating(key);
       }})(k));
       el.appendChild(b);
     }
@@ -259,7 +292,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
     label.className='verdict';
     label.setAttribute('aria-live','polite');
     el.appendChild(label);
-    render(el,store[key]);
+    render(el,val(key));
     return el;
   }
 
@@ -306,16 +339,35 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
   viewer.addEventListener('click',function(e){if(e.target===viewer)viewer.close()});
   viewer.addEventListener('close',function(){URL.revokeObjectURL(viewer.querySelector('img').src)});
 
+  function dropThumb(id){
+    var t=thumbs[id];
+    if(t){URL.revokeObjectURL(t.url);t.img.remove();delete thumbs[id]}
+  }
+
   function thumb(box,rec){
-    var url=URL.createObjectURL(rec.blob),img=document.createElement('img');
+    var id=rec.id,url=URL.createObjectURL(rec.blob),img=document.createElement('img');
     img.src=url;img.alt='Session photo';img.loading='lazy';
+    thumbs[id]={img:img,url:url};
     img.onclick=function(){
       viewer.querySelector('img').src=URL.createObjectURL(rec.blob);
-      onDelete=function(){tx('readwrite',function(s){return s.delete(rec.id)}).then(function(){URL.revokeObjectURL(url);img.remove();viewer.close()})};
+      onDelete=function(){deletePhoto(id).then(function(){viewer.close()})};
       viewer.showModal();
     };
-    var add=box.querySelector('.add-pic');
-    box.insertBefore(img,add);
+    box.insertBefore(img,box.querySelector('.add-pic'));
+  }
+
+  function deletePhoto(id){
+    // Re-read the record: a sync may have uploaded it since the thumbnail was made.
+    return tx('readonly',function(s){return s.get(id)}).then(function(rec){
+      return tx('readwrite',function(s){return s.delete(id)}).then(function(){
+        dropThumb(id);
+        if(rec&&rec.remoteId&&canSync()){
+          q(sb.storage.from('photos').remove([rec.path]))
+            .then(function(){return q(sb.from('photos').delete().eq('id',rec.remoteId))})
+            .then(synced,function(){setStatus('err','Could not delete the cloud copy. It may come back after the next sync.')});
+        }
+      });
+    });
   }
 
   function pics(key){
@@ -334,7 +386,10 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
         label.classList.add('busy');
         shrink(f).then(function(blob){
           var rec={key:key,blob:blob,at:Date.now()};
-          return tx('readwrite',function(s){return s.add(rec)}).then(function(id){rec.id=id;thumb(box,rec)});
+          return tx('readwrite',function(s){return s.add(rec)}).then(function(id){
+            rec.id=id;thumb(box,rec);
+            if(canSync()){setStatus('busy','Uploading photo…');uploadRec(rec).then(synced,offline)}
+          });
         }).catch(function(){alert('Could not save the photo on this device.')}).then(function(){label.classList.remove('busy')});
       };
       box.appendChild(label);
@@ -346,9 +401,10 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
   }
 
   function attach(after,key){
-    var r=widget(key);
+    var r=widget(key),box=pics(key);
     after.after(r);
-    r.after(pics(key));
+    r.after(box);
+    ui[key]={rate:r,box:box};
   }
 
   document.querySelectorAll('.slot').forEach(function(slot){
@@ -359,6 +415,186 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
     });
   });
   if(MOBILE&&navigator.storage&&navigator.storage.persist)navigator.storage.persist();
+
+  // ---- Cloud sync (Supabase). Local data is the working copy; the cloud is the backup. ----
+  if(!SUPABASE_URL||!SUPABASE_KEY)return;
+
+  function q(p){return p.then(function(r){if(r.error)throw r.error;return r.data})}
+  function canSync(){return !!(sb&&user&&allowed)}
+
+  var bar=document.createElement('div');
+  bar.className='sync';
+  document.querySelector('.legend').after(bar);
+
+  function setStatus(state,msg){
+    var m=bar.querySelector('.msg');
+    if(!m)return;
+    bar.dataset.state=state;
+    m.textContent=msg;
+  }
+  function synced(){setStatus('ok','Synced as '+user.email)}
+  function offline(){setStatus('err',OFFLINE)}
+
+  function showSignedOut(){
+    bar.dataset.state='';
+    bar.innerHTML='<p><span class="dot"></span>Saved on this device only.</p><button type="button" class="ghost" data-act="start">Sign in to sync</button>';
+  }
+  function showEmailForm(){
+    bar.innerHTML='<form data-act="email"><input type="email" name="email" required placeholder="Your email" autocomplete="email"><button>Send code</button></form><p class="note">We email you a sign-in link. Ratings and photos then sync to every device you sign in on.</p>';
+    bar.querySelector('input').focus();
+  }
+  function showCodeForm(email){
+    bar.innerHTML='<p class="note">Sent to <b></b>. Open the link in that email on this phone, in the same browser. If the email shows a code, you can enter it here instead.</p><form data-act="code"><input name="code" required inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" placeholder="Code (optional)"><button>Sign in</button></form><button type="button" class="ghost" data-act="start">Use another email</button>';
+    bar.querySelector('b').textContent=email;
+    bar.dataset.email=email;
+    bar.querySelector('input').focus();
+  }
+  function showSignedIn(){
+    bar.innerHTML='<p><span class="dot"></span><span class="msg"></span></p><button type="button" class="ghost" data-act="signout">Sign out</button>';
+  }
+  function showError(msg){
+    var p=bar.querySelector('.err')||bar.appendChild(Object.assign(document.createElement('p'),{className:'err'}));
+    p.textContent=msg;
+  }
+
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-act]');
+    if(!b)return;
+    if(b.dataset.act==='start')showEmailForm();
+    if(b.dataset.act==='signout'&&confirm('Sign out? Your ratings and photos stay in the cloud and are removed from this device.')){
+      sb.auth.signOut({scope:'local'}).then(function(){clearLocal();localStorage.removeItem(OWNER);user=null;allowed=false;showSignedOut()});
+    }
+  });
+  bar.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target,btn=f.querySelector('button');
+    btn.disabled=true;
+    if(f.dataset.act==='email'){
+      var email=f.email.value.trim();
+      sb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){
+        btn.disabled=false;
+        if(r.error)showError(r.error.message);else showCodeForm(email);
+      });
+    }
+    if(f.dataset.act==='code'){
+      sb.auth.verifyOtp({email:bar.dataset.email,token:f.code.value.trim(),type:'email'}).then(function(r){
+        btn.disabled=false;
+        if(r.error)showError(r.error.message);
+      });
+    }
+  });
+
+  function clearLocal(){
+    store={};saveStore();
+    Object.keys(ui).forEach(renderKey);
+    Object.keys(thumbs).forEach(dropThumb);
+    return tx('readwrite',function(s){return s.clear()}).catch(function(){});
+  }
+
+  function pushRating(key){
+    if(!canSync())return;
+    var v=store[key];
+    q(sb.from('ratings').upsert({user_id:user.id,session_key:key,rating:v.r,updated_at:new Date(v.t).toISOString()})).then(synced,offline);
+  }
+
+  function syncRatings(){
+    return q(sb.from('ratings').select('session_key,rating,updated_at')).then(function(rows){
+      var remote={};
+      (rows||[]).forEach(function(row){
+        var t=Date.parse(row.updated_at);
+        remote[row.session_key]=t;
+        if(!store[row.session_key]||store[row.session_key].t<t){
+          store[row.session_key]={r:row.rating,t:t};
+          renderKey(row.session_key);
+        }
+      });
+      saveStore();
+      var up=Object.keys(store).filter(function(k){return !(k in remote)||store[k].t>remote[k]}).map(function(k){
+        return {user_id:user.id,session_key:k,rating:store[k].r,updated_at:new Date(store[k].t).toISOString()};
+      });
+      if(up.length)return q(sb.from('ratings').upsert(up));
+    });
+  }
+
+  function uploadRec(rec){
+    if(uploading[rec.id])return uploading[rec.id];
+    var path=user.id+'/'+(crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2))+'.jpg';
+    var p=q(sb.storage.from('photos').upload(path,rec.blob,{contentType:rec.blob.type||'image/jpeg'}))
+      .then(function(){return q(sb.from('photos').insert({user_id:user.id,session_key:rec.key,path:path}).select('id').single())})
+      .then(function(row){
+        rec.remoteId=row.id;rec.path=path;
+        return tx('readwrite',function(s){return s.put(rec)});
+      });
+    uploading[rec.id]=p;
+    return p.then(function(r){delete uploading[rec.id];return r},function(e){delete uploading[rec.id];throw e});
+  }
+
+  function syncPhotos(){
+    return Promise.all([q(sb.from('photos').select('id,session_key,path')),tx('readonly',function(s){return s.getAll()})]).then(function(res){
+      var remote=res[0]||[],local=res[1]||[],byRemote={},remoteIds={},jobs=[];
+      local.forEach(function(r){if(r.remoteId)byRemote[r.remoteId]=r});
+      remote.forEach(function(row){
+        remoteIds[row.id]=1;
+        if(byRemote[row.id])return;
+        jobs.push(q(sb.storage.from('photos').download(row.path)).then(function(blob){
+          var rec={key:row.session_key,blob:blob,at:Date.now(),remoteId:row.id,path:row.path};
+          return tx('readwrite',function(s){return s.add(rec)}).then(function(id){
+            rec.id=id;
+            if(ui[rec.key])thumb(ui[rec.key].box,rec);
+          });
+        }));
+      });
+      local.forEach(function(rec){
+        if(!rec.remoteId)jobs.push(uploadRec(rec));
+        else if(!remoteIds[rec.remoteId])jobs.push(tx('readwrite',function(s){return s.delete(rec.id)}).then(function(){dropThumb(rec.id)}));
+      });
+      return Promise.all(jobs);
+    });
+  }
+
+  function sync(){
+    if(!canSync()||syncing)return;
+    syncing=true;lastSync=Date.now();
+    setStatus('busy','Syncing…');
+    Promise.all([syncRatings(),syncPhotos()]).then(synced,offline).then(function(){syncing=false});
+  }
+
+  function begin(){
+    showSignedIn();
+    setStatus('busy','Checking access…');
+    q(sb.rpc('is_allowed')).then(function(ok){
+      allowed=!!ok;
+      if(!allowed){setStatus('err',user.email+' is not on the guest list, so nothing is synced. Ask Sveinn to add it.');return}
+      // Never merge one person's local data into another person's account.
+      var owner=localStorage.getItem(OWNER);
+      return (owner&&owner!==user.id?clearLocal():Promise.resolve()).then(function(){
+        localStorage.setItem(OWNER,user.id);
+        sync();
+      });
+    },offline);
+  }
+
+  function onSession(session){
+    var u=session&&session.user;
+    if(u&&(!user||user.id!==u.id)){user=u;begin()}
+    else if(!u){user=null;allowed=false;showSignedOut()}
+  }
+
+  showSignedOut();
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+  s.onload=function(){
+    sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{flowType:'implicit',persistSession:true,detectSessionInUrl:true}});
+    // Defer: calling Supabase inside this callback can deadlock its auth lock.
+    sb.auth.onAuthStateChange(function(event,session){setTimeout(function(){onSession(session)})});
+  };
+  s.onerror=function(){bar.remove()};
+  document.head.appendChild(s);
+
+  window.addEventListener('online',sync);
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible'&&Date.now()-lastSync>30000)sync();
+  });
 })();
 </script>
 </body>
