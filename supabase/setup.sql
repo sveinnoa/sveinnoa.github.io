@@ -39,6 +39,21 @@ create policy "own ratings" on public.ratings for all to authenticated
   using (user_id = auth.uid() and public.is_allowed())
   with check (user_id = auth.uid() and public.is_allowed());
 
+-- Picks: which sessions each person plans to attend. picked = false keeps
+-- un-picks so they sync too.
+create table if not exists public.picks (
+  user_id uuid not null default auth.uid() references auth.users on delete cascade,
+  session_key text not null,
+  picked boolean not null,
+  updated_at timestamptz not null default now(),
+  primary key (user_id, session_key)
+);
+alter table public.picks enable row level security;
+drop policy if exists "own picks" on public.picks;
+create policy "own picks" on public.picks for all to authenticated
+  using (user_id = auth.uid() and public.is_allowed())
+  with check (user_id = auth.uid() and public.is_allowed());
+
 -- Photos: metadata here, image files in the private "photos" bucket under <user id>/.
 create table if not exists public.photos (
   id uuid primary key default gen_random_uuid(),
