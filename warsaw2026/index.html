@@ -79,9 +79,12 @@ section.block{padding:4.5rem 0 0}
 .pics{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem;align-items:center}
 .pics:empty{display:none}
 .pics img{width:4rem;height:4rem;object-fit:cover;border-radius:6px;border:1px solid var(--line);cursor:pointer;display:block}
-.add-pic{font:inherit;font-size:.85rem;color:var(--fjord);background:var(--surface);border:1px dashed var(--line);border-radius:6px;height:2.5rem;padding:0 .9rem;cursor:pointer}
+.add-pic{width:2.75rem;height:2.75rem;display:grid;place-items:center;color:var(--slate);background:var(--surface);border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:color .15s,border-color .15s,transform .1s;-webkit-tap-highlight-color:transparent}
+.add-pic:active{transform:scale(.92);color:var(--fjord);border-color:var(--fjord)}
+.add-pic svg{width:1.3rem;height:1.3rem}
 .add-pic input{display:none}
-.add-pic.busy{opacity:.5;pointer-events:none}
+.add-pic.busy{pointer-events:none;color:var(--fjord);border-color:var(--fjord);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4}}
 dialog.viewer{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;margin:auto}
 dialog.viewer::backdrop{background:rgba(10,14,16,.88)}
 dialog.viewer img{display:block;max-width:94vw;max-height:80vh;border-radius:6px}
@@ -306,7 +309,9 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;
     if(MOBILE){
       var label=document.createElement('label');
       label.className='add-pic';
-      label.innerHTML='+ Add a picture<input type="file" accept="image/*">';
+      label.setAttribute('aria-label','Add a picture');
+      label.title='Add a picture';
+      label.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4h-3L9 6H5.5A2.5 2.5 0 0 0 3 8.5v9A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5V12"/><circle cx="12" cy="13" r="3.5"/><path d="M19 2v6M16 5h6"/></svg><input type="file" accept="image/*">';
       var input=label.querySelector('input');
       input.onchange=function(){
         var f=input.files[0];input.value='';
