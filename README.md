@@ -13,4 +13,4 @@ Preview locally with `python3 -m http.server`.
 
 ## Cloud sync for /warsaw2026/
 
-Picks, ratings and photos are saved on the device first. If `SUPABASE_URL` and `SUPABASE_KEY` are set near the bottom of `warsaw2026/index.html`, people on the allow-list can sign in with an email code to back them up and sync them across devices. `supabase/setup.sql` creates the tables (picks, ratings, photos), the private photo bucket and the access policies; it is not deployed with the site.
+Picks, ratings and photos are saved on the device first. If `SUPABASE_URL` and `SUPABASE_KEY` are set near the bottom of `warsaw2026/index.html`, anyone can sign in with an email and password to back them up and sync them across devices. `supabase/setup.sql` creates the tables (picks, ratings, photos), the private photo bucket and the access policies; it is not deployed with the site.

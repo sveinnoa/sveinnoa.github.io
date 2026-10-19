@@ -2,28 +2,17 @@
 -- Run once in the Supabase dashboard: SQL Editor -> New query -> paste -> Run.
 -- Safe to re-run.
 
--- Who may store data. Anyone can request a sign-in email, but only these
--- addresses can read or write ratings and photos.
-create table if not exists public.allowed_emails (
-  email text primary key
-);
-alter table public.allowed_emails enable row level security;
--- Edit these, then re-run (or insert more later in the Table Editor).
-insert into public.allowed_emails (email) values
-  ('sveinn.arnorsson@arionbanki.is'),
-  ('haukur.sveinsson@arionbanki.is'),
-  ('jonas.oddsson@arionbanki.is')
-on conflict do nothing;
-
+-- Who may store data: anyone who is signed in. To limit it again, change this
+-- function (for example to check an allow-list table); the policies below use it.
 create or replace function public.is_allowed()
 returns boolean
 language sql stable security definer set search_path = ''
 as $$
-  select exists (
-    select 1 from public.allowed_emails
-    where lower(email) = lower(auth.jwt() ->> 'email')
-  );
+  select auth.uid() is not null;
 $$;
+
+-- Earlier versions kept an allow-list of email addresses.
+drop table if exists public.allowed_emails;
 
 -- Ratings: one row per user and session.
 create table if not exists public.ratings (
