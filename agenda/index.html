@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conference agenda, Warsaw 2026 · Sveinn Arnórsson</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232F6F73'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' text-anchor='middle' fill='%23EEF1EF'%3ESA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --frost:#EEF1EF; --surface:#FFFFFF; --basalt:#1E2427; --slate:#58666B; --line:#CBD3D2;
+  --fjord:#2F6F73; --lichen:#B8931E;
+  --room-a:#2F6F73; --room-b:#B8931E; --room-c:#8A7AA6;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --frost:#151A1C; --surface:#1C2326; --basalt:#E4EAE8; --slate:#9AA8AB; --line:#2E383B;
+    --fjord:#6FB3B5; --lichen:#D9B547;
+    --room-a:#4E9A9C; --room-b:#D9B547; --room-c:#A595C2;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Schibsted Grotesk",system-ui,sans-serif;background:var(--frost);color:var(--basalt);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--fjord);text-underline-offset:.2em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--lichen);outline-offset:3px;border-radius:2px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.5rem}
+
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+header.top .mark{font-weight:800;text-decoration:none;color:var(--basalt)}
+header.top nav{display:flex;gap:1.5rem}
+header.top nav a{color:var(--slate);text-decoration:none;font-size:.95rem}
+header.top nav a:hover{color:var(--basalt)}
+
+.hero{padding:5rem 0 1rem}
+.hero h1{font-size:clamp(2.4rem,6.5vw,4.75rem);font-weight:800;line-height:.98;letter-spacing:-.035em;max-width:16ch}
+.hero .lede{margin-top:1.5rem;max-width:40rem;font-size:clamp(1.1rem,2vw,1.25rem);line-height:1.5;color:var(--slate)}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin-top:1.5rem;list-style:none;font-size:.95rem}
+.legend li{display:flex;align-items:center;gap:.5rem}
+.legend i{width:.85rem;height:.85rem;border-radius:3px;display:inline-block}
+.a{background:var(--room-a)}.b{background:var(--room-b)}.c{background:var(--room-c)}
+
+section.block{padding:4.5rem 0 0}
+.block-head{display:grid;grid-template-columns:14rem 1fr;gap:2rem;align-items:baseline}
+.block-head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.block-head h2 span{display:block;font-size:1rem;font-weight:400;color:var(--slate);letter-spacing:0}
+.block-body{grid-column:2}
+
+.slot{display:grid;grid-template-columns:8.5rem 1fr;gap:1.5rem;padding:1.5rem 0;border-top:1px solid var(--line)}
+.slot:first-child{border-top:0;padding-top:0}
+.slot .when{color:var(--slate);font-size:.95rem;font-variant-numeric:tabular-nums}
+.slot h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.who{color:var(--slate);display:flex;align-items:baseline;gap:.6rem;margin-top:.2rem}
+.who i{width:.6rem;height:.6rem;border-radius:2px;flex:none;transform:translateY(-1px)}
+.alt{margin-top:.9rem;padding:.75rem 1rem;background:var(--surface);border-radius:6px;font-size:.95rem}
+.alt .label{color:var(--slate);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+.alt p{font-weight:500}
+.alt .who{font-size:.9rem;margin-top:.1rem}
+
+footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;margin-top:5rem;color:var(--slate);font-size:.9rem}
+
+@media (max-width:820px){
+  .block-head{grid-template-columns:1fr;gap:1rem}
+  .block-body{grid-column:1}
+  .slot{grid-template-columns:1fr;gap:.35rem}
+  .hero{padding-top:3rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <a class="mark" href="/">Sveinn Arnórsson</a>
+  <nav aria-label="Days">
+    <a href="#tue">Tuesday</a>
+    <a href="#wed">Wednesday</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <h1>Conference agenda, Warsaw</h1>
+  <p class="lede">The sessions I plan to attend on 20–21 October 2026. All times are Warsaw time (CEST).</p>
+  <ul class="legend">
+    <li><i class="a"></i>Room A</li>
+    <li><i class="b"></i>Room B</li>
+    <li><i class="c"></i>Room C</li>
+  </ul>
+</section>
+
+<section class="block" id="tue">
+  <div class="block-head">
+    <h2>Tuesday <span>20 October</span></h2>
+    <div class="block-body">
+      <div class="slot"><div class="when">09:10–10:10</div><div>
+        <h3>Justify What You Didn't Choose</h3>
+        <div class="who"><i class="a"></i>Oliver Sturm · Room A</div>
+      </div></div>
+      <div class="slot"><div class="when">10:30–11:30</div><div>
+        <h3>What is new in .NET and C#?</h3>
+        <div class="who"><i class="a"></i>Johnny Hooyberghs · Room A</div>
+        <div class="alt"><div class="label">Or</div><p>Agentic AI Needs Structure: Coordinated Agents on Clean Architecture</p><div class="who"><i class="b"></i>Florin Coros · Room B</div></div>
+      </div></div>
+      <div class="slot"><div class="when">11:50–12:50</div><div>
+        <h3>AI-First Codebase: How to Set Up Your .NET Project for Working with AI</h3>
+        <div class="who"><i class="c"></i>Michał Pobuta · Room C</div>
+        <div class="alt"><div class="label">Or</div><p>Starting with Microsoft.Extensions.VectorData and RAG</p><div class="who"><i class="a"></i>Jiří Činčura · Room A</div></div>
+      </div></div>
+      <div class="slot"><div class="when">13:50–14:50</div><div>
+        <h3>Röck Yoür Cöde: Stop Guessing—Benchmark Like a Pro</h3>
+        <div class="who"><i class="a"></i>David McCarter · Room A</div>
+        <div class="alt"><div class="label">Or</div><p>The Myth of Message Ordering: What Message Brokers Actually Guarantee</p><div class="who"><i class="b"></i>Poornima Nayar · Room B</div></div>
+      </div></div>
+      <div class="slot"><div class="when">15:15–16:15</div><div>
+        <h3>Above the Cloud: Building Data Centers in Space</h3>
+        <div class="who"><i class="a"></i>Richard Campbell · Room A</div>
+        <div class="alt"><div class="label">Or</div><p>No More OOP: Functional DDD Without the Baggage</p><div class="who"><i class="b"></i>Oliver Sturm · Room B</div></div>
+      </div></div>
+      <div class="slot"><div class="when">16:40–17:40</div><div>
+        <h3>You Don’t Know C#</h3>
+        <div class="who"><i class="a"></i>Stefan Pölz, Angie Kadnar · Room A</div>
+        <div class="alt"><div class="label">Or</div><p>Don't Trust the Browser: Secure SPAs with BFF</p><div class="who"><i class="b"></i>Roland Guijt · Room B</div></div>
+      </div></div>
+      <div class="slot"><div class="when">18:00–19:00</div><div>
+        <h3>After the AI Hype: What’s Real, What’s Next</h3>
+        <div class="who"><i class="a"></i>Richard Campbell · Room A</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="wed">
+  <div class="block-head">
+    <h2>Wednesday <span>21 October</span></h2>
+    <div class="block-body">
+      <div class="slot"><div class="when">09:30–10:30</div><div>
+        <h3>Observability in .NET 10</h3>
+        <div class="who"><i class="a"></i>Stefan Pölz · Room A</div>
+        <div class="alt"><div class="label">Or</div><p>Roslyn 101: Source Generators, Diagnostic Analyzers and CodeFix Providers</p><div class="who"><i class="b"></i>Shahab Ganji · Room B</div></div>
+      </div></div>
+      <div class="slot"><div class="when">10:50–11:50</div><div>
+        <h3>LLMs in the Event-Sourced World: Commands, Projections and Sagas</h3>
+        <div class="who"><i class="a"></i>Oliver Sturm · Room A</div>
+      </div></div>
+      <div class="slot"><div class="when">12:10–13:10</div><div>
+        <h3>Qubits Are Vectors Too: The Math Behind Quantum Computing</h3>
+        <div class="who"><i class="c"></i>Johnny Hooyberghs · Room C</div>
+      </div></div>
+      <div class="slot"><div class="when">14:10–15:10</div><div>
+        <h3>A Fistful of .NET Performance Tips &amp; Tricks</h3>
+        <div class="who"><i class="a"></i>Stefan Pölz, Angie Kadnar · Room A</div>
+        <div class="alt"><div class="label">Or</div><p>Modern cross-platform applications with .NET and Avalonia UI</p><div class="who"><i class="b"></i>Roland König · Room B</div></div>
+      </div></div>
+      <div class="slot"><div class="when">15:30–16:30</div><div>
+        <h3>A reflection on GenAI generated unit tests in C#</h3>
+        <div class="who"><i class="c"></i>Johan Smarius · Room C</div>
+      </div></div>
+      <div class="slot"><div class="when">16:50–17:50</div><div>
+        <h3>Software Engineering Goes to 11: The Rock ’n’ Roll Commandments for Code That Rocks</h3>
+        <div class="who"><i class="a"></i>David McCarter · Room A</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>© 2026 Sveinn Ólafur Arnórsson. <a href="/">Home</a></footer>
+</div>
+</body>
+</html>
